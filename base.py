@@ -58,8 +58,3 @@ huffman_encoding.count = 0
 file = open('red.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
-"""
-input_bits = img.shape[0]*img.shape[1]*8	# calculate number of bits in grayscale 
-compression = (1-np.sum(huffman_encoding.output_bits*hist)/input_bits)*100	# compression rate
-print('Compression is ',compression,' percent')
-"""
