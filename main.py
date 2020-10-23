@@ -1,4 +1,5 @@
 import numpy as np
+from screen_event import takeclick
 import cv2
 import queue
 from huffman import Node
@@ -21,10 +22,10 @@ blue_channel = []
 green_channel = []
 red_channel = []
 
+window = 'Image'
 
-
-cv2.imshow('teste', img)
-cv2.waitKey(0)
+#cv2.imshow(window, img)
+#cv2.waitKey(0)
 
 i = 0
 while(i < height):
@@ -59,9 +60,6 @@ for i in range(height):
 			cont+=1
 """
 
-
-
-
 # Red Channel
 hist = np.bincount(red_channel.ravel(),minlength=256)
 probabilities = hist/np.sum(hist)		
@@ -70,7 +68,7 @@ tmp_array = np.ones([128],dtype=int)
 huffman_encoding.output_bits = np.empty(256,dtype=int) 
 huffman_encoding.count = 0
 
-file = open('red.txt','w')
+file = open('dict_rgb/red.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
 # Blue Channel
@@ -81,7 +79,7 @@ tmp_array = np.ones([128],dtype=int)
 huffman_encoding.output_bits = np.empty(256,dtype=int) 
 huffman_encoding.count = 0
 
-file = open('blue.txt','w')
+file = open('dict_rgb/blue.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
 # Green Channel
@@ -92,10 +90,17 @@ tmp_array = np.ones([128],dtype=int)
 huffman_encoding.output_bits = np.empty(256,dtype=int) 
 huffman_encoding.count = 0
 
-file = open('green.txt','w')
+file = open('dict_rgb/green.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
 
+cv2.namedWindow(window)
+cv2.setMouseCallback(window, takeclick)
+
+while(True):
+    cv2.imshow(window, img)
+    if cv2.waitKey(20) == 27:
+        break
 """
 input_bits = img.shape[0]*img.shape[1]*8	# calculate number of bits in grayscale 
 compression = (1-np.sum(huffman_encoding.output_bits*hist)/input_bits)*100	# compression rate
