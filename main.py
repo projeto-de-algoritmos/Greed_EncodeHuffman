@@ -1,10 +1,11 @@
 import numpy as np
-from screen_event import takeclick
+from screen_event import takeclick, huffmap_blue, huffmap_green, huffmap_red
 import cv2
 import queue
+import time
 from huffman import Node
 from huffman import huffman_encoding, tree
-
+import pandas as pd
 
 #Read image
 img = cv2.imread('images/op.jpg')
@@ -59,18 +60,6 @@ for i in range(height):
 		if(red_channel[i][j] == 187):
 			cont+=1
 """
-
-# Red Channel
-hist = np.bincount(red_channel.ravel(),minlength=256)
-probabilities = hist/np.sum(hist)		
-root_node = tree(probabilities)	
-tmp_array = np.ones([128],dtype=int)
-huffman_encoding.output_bits = np.empty(256,dtype=int) 
-huffman_encoding.count = 0
-
-file = open('dict_rgb/red.txt','w')
-huffman_encoding(root_node,tmp_array,file)
-
 # Blue Channel
 hist = np.bincount(blue_channel.ravel(),minlength=256)
 probabilities = hist/np.sum(hist)		
@@ -81,6 +70,8 @@ huffman_encoding.count = 0
 
 file = open('dict_rgb/blue.txt','w')
 huffman_encoding(root_node,tmp_array,file)
+
+
 
 # Green Channel
 hist = np.bincount(green_channel.ravel(),minlength=256)
@@ -94,6 +85,52 @@ file = open('dict_rgb/green.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
 
+# Red Channel
+hist = np.bincount(red_channel.ravel(),minlength=256)
+probabilities = hist/np.sum(hist)		
+root_node = tree(probabilities)	
+tmp_array = np.ones([128],dtype=int)
+huffman_encoding.output_bits = np.empty(256,dtype=int) 
+huffman_encoding.count = 0
+
+file = open('dict_rgb/red.txt','w')
+huffman_encoding(root_node,tmp_array,file)
+
+# Neutral Channel
+hist = np.bincount(red_channel.ravel(),minlength=256)
+probabilities = hist/np.sum(hist)		
+root_node = tree(probabilities)	
+tmp_array = np.ones([128],dtype=int)
+huffman_encoding.output_bits = np.empty(256,dtype=int) 
+huffman_encoding.count = 0
+
+file = open('dict_rgb/buffer.txt','w')
+huffman_encoding(root_node,tmp_array,file)
+
+
+"""
+#Debbug
+red_map = {}
+huffmap = pd.read_csv("./dict_rgb/red.txt", header = None,  sep =" ")
+
+print(huffmap[0][0], huffmap[1][0])
+red_map[int(huffmap[0][0])] =  str(huffmap[1][0])
+
+for i in range(len(huffmap)):
+	red_map[int(huffmap[0][i])] =  str(huffmap[1][i])
+
+print(red_map[29])
+#print(red_map[int(huffmap[0][0])])
+"""
+
+red_map = huffmap_red('red.txt')
+blue_map = huffmap_blue('blue.txt')
+green_map = huffmap_green('green.txt')
+
+#print(red_map[84])
+#print(blue_map[75])
+#print(green_map[21])
+
 cv2.namedWindow(window)
 cv2.setMouseCallback(window, takeclick)
 
@@ -101,8 +138,3 @@ while(True):
     cv2.imshow(window, img)
     if cv2.waitKey(20) == 27:
         break
-"""
-input_bits = img.shape[0]*img.shape[1]*8	# calculate number of bits in grayscale 
-compression = (1-np.sum(huffman_encoding.output_bits*hist)/input_bits)*100	# compression rate
-print('Compression is ',compression,' percent')
-"""
