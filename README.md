@@ -1,44 +1,36 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# Encode Huffman
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 3<br>
+**Conteúdo da Disciplina**: Greed<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 17/0138551  | Bruno Duarte |
+| 17/0033112  | Eugênio Sales |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O projeto visa demonstrar a codificação de Huffman em imagens onde cada imagem possui uma matriz RGB represantando suas cores com o balanceamento de parâmetros. A partir de cada filtro é gerado uma tabela em txt representando o algoritmo de Huffman. 
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![](./images/1.png)
+![](./images/2.png)
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+
+**Linguagem**: python3<br>
+
+`$ pip install pandas `<br>
+
+`$ sudo apt-get install python-tk`<br>
+
+`$ pip install numpy `<br>
+
+> Nota: Utilize pip ou pip3 para instalar as depêndencias
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+A imagem é aberta a partir daí ao dar **duplo clique** sobre a imagem aparecerá a codificação e seus respectivos valores, a label com as informações é dada e esse padrão pode ser repetido n vezes em qualquer região delimitada pela imagem.
 
 
 

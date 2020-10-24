@@ -8,7 +8,7 @@ from huffman import huffman_encoding, tree
 import pandas as pd
 
 #Read image
-img = cv2.imread('images/op.jpg')
+img = cv2.imread('images/ney.jpg')
 
 
 scale = 80
@@ -18,15 +18,12 @@ new_origin = (width, height)
 
 img = cv2.resize(img, new_origin)
 shape = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#print(type(shape))
 blue_channel = []
 green_channel = []
 red_channel = []
 
 window = 'Image'
 
-#cv2.imshow(window, img)
-#cv2.waitKey(0)
 
 i = 0
 while(i < height):
@@ -48,11 +45,6 @@ blue_channel = np.array(blue_channel)
 green_channel = np.array(green_channel)
 red_channel = np.array(red_channel)
 
-#print(red_channel)
-#print(blue_channel)
-#print(green_channel)
-
-
 """ #Verify Histogram specif value
 cont = 0
 for i in range(height):
@@ -60,6 +52,7 @@ for i in range(height):
 		if(red_channel[i][j] == 187):
 			cont+=1
 """
+
 # Blue Channel
 hist = np.bincount(blue_channel.ravel(),minlength=256)
 probabilities = hist/np.sum(hist)		
@@ -71,8 +64,6 @@ huffman_encoding.count = 0
 file = open('dict_rgb/blue.txt','w')
 huffman_encoding(root_node,tmp_array,file)
 
-
-
 # Green Channel
 hist = np.bincount(green_channel.ravel(),minlength=256)
 probabilities = hist/np.sum(hist)		
@@ -83,7 +74,6 @@ huffman_encoding.count = 0
 
 file = open('dict_rgb/green.txt','w')
 huffman_encoding(root_node,tmp_array,file)
-
 
 # Red Channel
 hist = np.bincount(red_channel.ravel(),minlength=256)
@@ -126,10 +116,6 @@ print(red_map[29])
 red_map = huffmap_red('red.txt')
 blue_map = huffmap_blue('blue.txt')
 green_map = huffmap_green('green.txt')
-
-#print(red_map[84])
-#print(blue_map[75])
-#print(green_map[21])
 
 cv2.namedWindow(window)
 cv2.setMouseCallback(window, takeclick)
