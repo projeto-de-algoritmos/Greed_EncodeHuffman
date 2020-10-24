@@ -30,7 +30,7 @@ O projeto visa demonstrar a codificação de Huffman em imagens onde cada imagem
 
 ## Uso 
 
-A imagem é aberta a partir daí ao dar **duplo clique** sobre a imagem aparecerá a codificação e seus respectivos valores. 
+A imagem é aberta a partir daí ao dar **duplo clique** sobre a imagem aparecerá a codificação e seus respectivos valores, a label com as informações é dada e esse padrão pode ser repetido n vezes em qualquer região delimitada pela imagem.
 
 
 
