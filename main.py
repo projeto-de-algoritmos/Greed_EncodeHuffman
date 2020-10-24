@@ -8,7 +8,7 @@ from huffman import huffman_encoding, tree
 import pandas as pd
 
 #Read image
-img = cv2.imread('images/pele.jpg')
+img = cv2.imread('images/ney.jpg')
 
 
 scale = 80

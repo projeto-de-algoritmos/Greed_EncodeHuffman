@@ -7,7 +7,7 @@ def screen_rgb(red, blue, green, red_map, blue_map, green_map):
 
         root=tk.Tk()
         text = Text(root)
-        root.title('Infos')
+        root.title('Parâmetros/Huffman')
         root.geometry("300x150")
 
         r_label = tk.Label(root, text = str(red) + ' : ' + str(red_map[red]) ,font=('calibre', 20, 'bold'), foreground = 'red', justify = 'left') 
